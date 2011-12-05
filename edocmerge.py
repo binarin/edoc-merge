@@ -117,8 +117,8 @@ class Processor:
         out = fin_re.sub(r'href="', out)
 
         # UTF fix
-        fin_re = re.compile('</title>')
-        out = fin_re.sub(r'</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />', out)
+        fin_re = re.compile('<meta http-equiv="Content-Type"[^>]+>')
+        out = fin_re.sub(r'<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />', out)
         
         dest_f = open(dest, 'w')
         dest_f.write(out)
